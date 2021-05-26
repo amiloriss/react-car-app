@@ -17,14 +17,16 @@ const CarsTable = ({ cars }) => {
 			</thead>
 			<tbody>
 				{cars.map(el => {
+					const { id, brand, model, year, fuel, bodyType, price } = el;
+					const transformedPrice = price.toLocaleString().replace(/,/g, ' ');
 					return (
-						<tr key={el.id}>
-							<td>{el.brand}</td>
-							<td>{el.model}</td>
-							<td>{el.year}</td>
-							<td>{el.fuel}</td>
-							<td>{el.bodyType}</td>
-							<td>{el.price}</td>
+						<tr key={id}>
+							<td>{brand}</td>
+							<td>{model}</td>
+							<td>{year}</td>
+							<td>{fuel}</td>
+							<td>{bodyType}</td>
+							<td>{transformedPrice} &#8381;</td>
 						</tr>
 					);
 				})}
