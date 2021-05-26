@@ -2,11 +2,35 @@ import React from 'react';
 import { Form, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
-import { searchCar } from '../action/action';
+import {
+	searchCar,
+	bodyTypeFilter,
+	fuelFilter,
+	yearFilter,
+	priceFilter,
+} from '../action/action';
 
-const FilterForm = ({ searchCar }) => {
-	const inputHandle = e => {
+const FilterForm = ({
+	searchCar,
+	bodyTypeFilter,
+	fuelFilter,
+	yearFilter,
+	priceFilter,
+}) => {
+	const searchCarHandle = e => {
 		searchCar(e.target.value);
+	};
+	const bodyTypeFilterHandle = e => {
+		bodyTypeFilter(e.target.value);
+	};
+	const fuelFilterHandle = e => {
+		fuelFilter(e.target.value);
+	};
+	const yearFilteredHandle = e => {
+		yearFilter(e.target.value);
+	};
+	const priceFilterHandle = e => {
+		priceFilter(e.target.value);
 	};
 	return (
 		<div className='form-container mb-5 px-3 border rounded'>
@@ -18,44 +42,63 @@ const FilterForm = ({ searchCar }) => {
 						<Form.Control
 							type='email'
 							placeholder='Введите модель автомобиля...'
-							onChange={inputHandle}
+							onChange={searchCarHandle}
 						/>
 					</Form.Group>
 				</Form.Row>
 				<Form.Row>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Год выпуска</Form.Label>
-						<Form.Control as='select' defaultValue='Choose...'>
-							<option></option>
-							<option>...</option>
+						<Form.Control as='select' onChange={yearFilteredHandle}>
+							<option value=''>Все</option>
+							<option value={[2000, 2005]}>2000-2005</option>
+							<option value={[2006, 2010]}>2006-2010</option>
+							<option value={[2011, 2015]}>2011-2015</option>
+							<option value={[2016, 2020]}>2016-2020</option>
 						</Form.Control>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Тип топлива</Form.Label>
-						<Form.Control as='select' defaultValue='Choose...'>
-							<option>diesel</option>
-							<option>petrol</option>
-							<option>electric</option>
-							<option>hybrid</option>
+						<Form.Control as='select' onChange={fuelFilterHandle}>
+							<option value=''>Все</option>
+							<option value='diesel'>diesel</option>
+							<option value='petrol'>petrol</option>
+							<option value='electric'>electric</option>
+							<option value='hybrid'>hybrid</option>
 						</Form.Control>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Тип кузова</Form.Label>
-						<Form.Control as='select' defaultValue='Choose...'>
-							<option>Hatchback</option>
-							<option>Estate</option>
-							<option>SUV</option>
-							<option>Sedan</option>
-							<option>MPV</option>
-							<option>Pickup</option>
-							<option>Cabrio</option>
+						<Form.Control as='select' onChange={bodyTypeFilterHandle}>
+							<option value=''>Все</option>
+							<option value='Hatchback'>Hatchback</option>
+							<option value='Estate'>Estate</option>
+							<option value='SUV'>SUV</option>
+							<option value='Sedan'>Sedan</option>
+							<option value='MPV'>MPV</option>
+							<option value='Pickup'>Pickup</option>
+							<option value='Cabrio'>Cabrio</option>
 						</Form.Control>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Стоимость</Form.Label>
-						<Form.Control as='select' defaultValue='Choose...'>
-							<option></option>
-							<option>...</option>
+						<Form.Control as='select' onChange={priceFilterHandle}>
+							<option value=''>Все</option>
+							<option value={[1000000, 1400000]}>
+								1 000 000 &#8381; - 1 500 000 &#8381;
+							</option>
+							<option value={[1500000, 1900000]}>
+								1 500 000 &#8381; - 1 900 000 &#8381;
+							</option>
+							<option value={[2000000, 2400000]}>
+								2 000 000 &#8381; - 2 400 000 &#8381;
+							</option>
+							<option value={[2500000, 2900000]}>
+								2 500 000 &#8381; - 2 900 000 &#8381;
+							</option>
+							<option value={[3000000, 4000000]}>
+								3 000 000 &#8381; - 4 000 000 &#8381;
+							</option>
 						</Form.Control>
 					</Form.Group>
 				</Form.Row>
@@ -64,4 +107,10 @@ const FilterForm = ({ searchCar }) => {
 	);
 };
 
-export default connect(null, { searchCar })(FilterForm);
+export default connect(null, {
+	searchCar,
+	bodyTypeFilter,
+	fuelFilter,
+	yearFilter,
+	priceFilter,
+})(FilterForm);
