@@ -12,6 +12,6 @@ const CarsTableWrapper = ({ children, cars }) => {
 };
 
 const mapStateToProps = state => ({
-	cars: state.cars,
+	cars: state.reducer.cars,
 });
 export default connect(mapStateToProps)(CarsTableWrapper);

@@ -16,6 +16,11 @@ const FilterForm = ({
 	fuelFilter,
 	yearFilter,
 	priceFilter,
+	searchText,
+	bodyTypeSelected,
+	fuelSelected,
+	priceSelected,
+	yearSelected,
 }) => {
 	const searchCarHandle = e => {
 		searchCar(e.target.value);
@@ -32,6 +37,7 @@ const FilterForm = ({
 	const priceFilterHandle = e => {
 		priceFilter(e.target.value);
 	};
+
 	return (
 		<div className='form-container mb-5 px-3 border rounded'>
 			<h3 className='my-3'>Фильтр / Поиск</h3>
@@ -40,16 +46,23 @@ const FilterForm = ({
 					<Form.Group as={Col} controlId='formGridEmail'>
 						<Form.Label>Поиск</Form.Label>
 						<Form.Control
-							type='email'
+							type='text'
 							placeholder='Введите модель автомобиля...'
 							onChange={searchCarHandle}
+							value={searchText}
 						/>
 					</Form.Group>
 				</Form.Row>
 				<Form.Row>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Год выпуска</Form.Label>
-						<Form.Control as='select' onChange={yearFilteredHandle}>
+						<Form.Control
+							value={
+								yearSelected.option ? yearSelected.value : yearSelected.value
+							}
+							as='select'
+							onChange={yearFilteredHandle}
+						>
 							<option value=''>Все</option>
 							<option value={[2000, 2005]}>2000-2005</option>
 							<option value={[2006, 2010]}>2006-2010</option>
@@ -59,7 +72,13 @@ const FilterForm = ({
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Тип топлива</Form.Label>
-						<Form.Control as='select' onChange={fuelFilterHandle}>
+						<Form.Control
+							value={
+								fuelSelected.option ? fuelSelected.value : fuelSelected.value
+							}
+							as='select'
+							onChange={fuelFilterHandle}
+						>
 							<option value=''>Все</option>
 							<option value='diesel'>diesel</option>
 							<option value='petrol'>petrol</option>
@@ -69,7 +88,15 @@ const FilterForm = ({
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Тип кузова</Form.Label>
-						<Form.Control as='select' onChange={bodyTypeFilterHandle}>
+						<Form.Control
+							value={
+								bodyTypeSelected.option
+									? bodyTypeSelected.value
+									: bodyTypeSelected.value
+							}
+							as='select'
+							onChange={bodyTypeFilterHandle}
+						>
 							<option value=''>Все</option>
 							<option value='Hatchback'>Hatchback</option>
 							<option value='Estate'>Estate</option>
@@ -82,7 +109,13 @@ const FilterForm = ({
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
 						<Form.Label>Стоимость</Form.Label>
-						<Form.Control as='select' onChange={priceFilterHandle}>
+						<Form.Control
+							value={
+								priceSelected.option ? priceSelected.value : priceSelected.value
+							}
+							as='select'
+							onChange={priceFilterHandle}
+						>
 							<option value=''>Все</option>
 							<option value={[1000000, 1400000]}>
 								1 000 000 &#8381; - 1 500 000 &#8381;
@@ -107,7 +140,15 @@ const FilterForm = ({
 	);
 };
 
-export default connect(null, {
+const mapStateToProps = state => ({
+	searchText: state.filterReducer.searchText,
+	bodyTypeSelected: state.filterReducer.bodyTypeSelected,
+	fuelSelected: state.filterReducer.fuelSelected,
+	priceSelected: state.filterReducer.priceSelected,
+	yearSelected: state.filterReducer.yearSelected,
+});
+
+export default connect(mapStateToProps, {
 	searchCar,
 	bodyTypeFilter,
 	fuelFilter,

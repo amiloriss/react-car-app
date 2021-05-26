@@ -37,7 +37,7 @@ const CarsTable = ({ cars }) => {
 
 const mapStateToProps = state => {
 	return {
-		cars: state.cars,
+		cars: state.reducer.cars,
 	};
 };
 

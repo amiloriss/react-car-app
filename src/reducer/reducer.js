@@ -7,11 +7,7 @@ import {
 } from '../action/type';
 import { cars } from '../data';
 
-const initialState = {
-	cars,
-};
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = { cars }, action) => {
 	switch (action.type) {
 		case SEARCH_CAR:
 			const searchedCars = cars.filter(el =>
