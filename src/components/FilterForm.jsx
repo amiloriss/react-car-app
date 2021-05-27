@@ -64,10 +64,10 @@ const FilterForm = ({
 							onChange={yearFilteredHandle}
 						>
 							<option value=''>Все</option>
-							<option value={[2000, 2005]}>2000-2005</option>
 							<option value={[2006, 2010]}>2006-2010</option>
 							<option value={[2011, 2015]}>2011-2015</option>
 							<option value={[2016, 2020]}>2016-2020</option>
+							<option value={[2021, 2025]}>2021-2025</option>
 						</Form.Control>
 					</Form.Group>
 					<Form.Group as={Col} controlId='formGridState'>
@@ -117,20 +117,29 @@ const FilterForm = ({
 							onChange={priceFilterHandle}
 						>
 							<option value=''>Все</option>
-							<option value={[1000000, 1400000]}>
-								1 000 000 &#8381; - 1 500 000 &#8381;
+							<option value={[500000, 999999]}>
+								500 000 &#8381; - 999 999 &#8381;
 							</option>
-							<option value={[1500000, 1900000]}>
-								1 500 000 &#8381; - 1 900 000 &#8381;
+							<option value={[1000000, 1499999]}>
+								1 000 000 &#8381; - 1 499 999 &#8381;
 							</option>
-							<option value={[2000000, 2400000]}>
-								2 000 000 &#8381; - 2 400 000 &#8381;
+							<option value={[1500000, 1999999]}>
+								1 500 000 &#8381; - 1 999 999 &#8381;
 							</option>
-							<option value={[2500000, 2900000]}>
-								2 500 000 &#8381; - 2 900 000 &#8381;
+							<option value={[2000000, 2499999]}>
+								2 000 000 &#8381; - 2 499 999 &#8381;
 							</option>
-							<option value={[3000000, 4000000]}>
-								3 000 000 &#8381; - 4 000 000 &#8381;
+							<option value={[2500000, 2999999]}>
+								2 500 000 &#8381; - 2 999 999 &#8381;
+							</option>
+							<option value={[3000000, 3999999]}>
+								3 000 000 &#8381; - 3 999 999 &#8381;
+							</option>
+							<option value={[4000000, 4999999]}>
+								4 000 000 &#8381; - 4 999 999 &#8381;
+							</option>
+							<option value={[5000000, 5999999]}>
+								5 000 000 &#8381; - 5 999 999 &#8381;
 							</option>
 						</Form.Control>
 					</Form.Group>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Alert from './Alert';
+import { Alert } from './Alert';
 
 const CarsTableWrapper = ({ children, cars }) => {
 	return (
